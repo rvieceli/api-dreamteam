@@ -16,7 +16,9 @@ const routes = new Router();
 
 routes.param('token', tokenValidation);
 
-routes.get('/', (req, res) => res.json({ message: 'Welcome to your api' }));
+routes.get('/', (req, res) =>
+  res.json({ message: 'Welcome to our dream api' })
+);
 
 routes.post('/users', userStoreValidator, UserController.store);
 routes.post('/sessions', sessionStoreValidator, SessionController.store);
