@@ -1,20 +1,32 @@
 import CreateUserService from '../../services/CreateUserService';
+import UpdateUserService from '../../services/UpdateUserService';
 
 class Controller {
   async store(request, response) {
-    const { firstname, lastname, email, password, endpoint } = request.body;
+    const { firstname, lastname, email, password } = request.body;
 
     await CreateUserService.run({
       firstname,
       lastname,
       email,
       password,
-      endpoint,
     });
 
     return response.json({
       message: 'Your account has been successfully created.',
     });
+  }
+
+  async update(request, response) {
+    const { firstname, lastname, email } = request.body;
+
+    await UpdateUserService.run(request.user, {
+      firstname,
+      lastname,
+      email,
+    });
+
+    return response.json(request.user);
   }
 }
 

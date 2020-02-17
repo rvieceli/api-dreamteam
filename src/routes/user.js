@@ -5,6 +5,7 @@ import SessionController from '../app/controllers/User/SessionController';
 import ForgotPasswordController from '../app/controllers/User/ForgotPasswordController';
 
 import userStoreValidator from '../app/validators/userStoreValidator';
+import userUpdateValidator from '../app/validators/userUpdateValidator';
 import sessionStoreValidator from '../app/validators/sessionStoreValidator';
 import forgotPasswordValidator from '../app/validators/forgotPasswordValidator';
 import resetPasswordValidator from '../app/validators/resetPasswordValidator';
@@ -21,6 +22,7 @@ routes.get('/', (req, res) =>
 );
 
 routes.post('/users', userStoreValidator, UserController.store);
+routes.put('/users', auth, userUpdateValidator, UserController.update);
 routes.post('/sessions', sessionStoreValidator, SessionController.store);
 routes.post(
   '/forgot-password',
